@@ -9,15 +9,15 @@ if (!empty($_GET['action'])) {
     $action = $_GET['action'];  
     $action = basename($action);  
     
-    if (!file_exists("./templates/$action.html"))  
+    if (!file_exists("./templates/$action.php"))  
         $action = "index";  
     
     if ($action == 'header' || $action == 'footer' || $action == 'sidebar') 
         $action = "index"; 
     
-    include("./templates/$action.html");  
+    include("./templates/$action.php");  
 } else {  
-    include("./templates/index.html");  
+    include("./templates/index.php");  
 }  
 
 
