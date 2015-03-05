@@ -5,6 +5,8 @@ include('./templates/helpers/header.html');
 
 include('./templates/helpers/sidebar.html');
 
+require_once './db/config.php';
+
 if (!empty($_GET['action'])) {  
     $action = $_GET['action'];  
     $action = basename($action);  
