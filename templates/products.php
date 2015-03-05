@@ -50,7 +50,8 @@
                         class=\"btn btn-primary\" role=\"button\">Edit</a></td>
 
                   <td><a href=\"scripts/php/delete_product.php?number={$row[0]}\" 
-                        class=\"btn btn-danger\" role=\"button\">Delete</a></td>
+                        class=\"btn btn-danger\" role=\"button\" 
+                        onclick=\"return confirm('Delete Product?')\">Delete</a></td>
                   </tr>";
           }
         ?>
