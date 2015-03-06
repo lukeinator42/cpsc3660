@@ -43,7 +43,7 @@
                   <td>{$row[2]}</td>
                   <td>{$row[3]}</td>
                   <td>{$row[4]}</td>
-                  <td>$".($row[5]/100).".".str_pad(($row[5]%100), 2, "0")."</td>
+                  <td>$".number_format((floatval($row[5])/100), 2)."</td>
                   <td>{$row[6]}</td>
                   <td>{$row[7]}</td>
                   <td><a href=\"?action=edit_product&number={$row[0]}\" 
@@ -93,7 +93,7 @@
                                                                     placeholder="Category">
     </div>
 
-    <button type="submit" class="btn btn-primary">Add Product</button>
+    <button type="submit" class="btn btn-success">Add Product</button>
 </form>
 
 </div>

@@ -1,9 +1,9 @@
 <?php
 
 
-include('./templates/helpers/header.html');
+include('./templates/helpers/header.php');
 
-include('./templates/helpers/sidebar.html');
+include('./templates/helpers/sidebar.php');
 
 require_once './db/config.php';
 
@@ -24,6 +24,6 @@ if (!empty($_GET['action'])) {
 
 
 
-include('./templates/helpers/footer.html');
+include('./templates/helpers/footer.php');
 
 ?>

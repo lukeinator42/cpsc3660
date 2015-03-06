@@ -8,7 +8,7 @@ $sql_insert = "insert into PRODUCT(name, UPC, stock, measurement, price, descrip
 											'$_POST[inputUPC]',
 											'$_POST[inputStock]',
 											'$_POST[inputUnit]',
-											'$_POST[inputPrice]',
+											'".str_replace(".", "", $_POST['inputPrice'])."',
 											'$_POST[inputDescription]',
 											'$_POST[inputCategory]')"; 
 
