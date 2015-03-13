@@ -1,18 +1,18 @@
 <?php
-  
-          require_once(ROOT.'/db/connect.php'); 
+//database connection
+require_once(ROOT.'/db/connect.php'); 
 
-          $sql_query = "SELECT * from PRODUCT";
-
-          $result = mysql_query($sql_query);
+//query to get data for products
+$sql_query = "SELECT * from PRODUCT";
+$result = mysql_query($sql_query);
 
 ?>
 
-
+<!--Container for table and form-->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <h1 class="page-header">Products</h1>
 
-
+<!--Table to display products-->
   <h2 class="sub-header">Current Products</h2>
   <div class="table-responsive">
     <table class="table table-striped">
@@ -28,14 +28,17 @@
           <th>Category</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="searchable">
+        <!--prints each row of table-->
         <?php
           if (!$result) {
             echo "DB Error, could not list tables. ";
             echo 'MySQL Error: ' . mysql_error();
             exit;
           }
-
+          //echos each row of table. 
+          //edit button links to edit form.
+          //delete button links to delete script 
           while ($row = mysql_fetch_row($result)) {
             echo "<tr>
                   <td>".str_pad($row[0], 6, "0", STR_PAD_LEFT)."</td>
@@ -59,6 +62,7 @@
     </table>
   </div>
   
+  <!--Form to add products. Submits to insert_product script-->
   <h2 class="sub-header">Add a Product</h2>
   
   <form class="col-xs-5" action="scripts/php/insert_product.php" method="post">

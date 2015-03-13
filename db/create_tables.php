@@ -13,7 +13,10 @@ price int NOT NULL,
 description varchar(255),
 category varchar(40),
 primary key(number)
-);";
+);
+
+
+";
 
 mysql_query($create_query)
 or die(mysql_error());

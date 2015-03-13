@@ -1,22 +1,23 @@
 <?php
-  
-          require_once(ROOT.'/db/connect.php'); 
+//connect script
+require_once(ROOT.'/db/connect.php'); 
 
-          $sql_query = "SELECT * from PRODUCT WHERE number=$_GET[number]";
+//query to populate form for editing
+$sql_query = "SELECT * from PRODUCT WHERE number=$_GET[number]";
+$result = mysql_query($sql_query);
 
-          $result = mysql_query($sql_query);
-
-          if (!$result) {
-            echo "DB Error, could not list tables. ";
-            echo 'MySQL Error: ' . mysql_error();
-            exit;
-          }
-
-          $row = mysql_fetch_row($result);
+if (!$result) {
+echo "DB Error, could not list tables. ";
+echo 'MySQL Error: ' . mysql_error();
+exit;
+}
+//get data for form
+$row = mysql_fetch_row($result);
 
 ?>
 
-
+<!--form that submits to update product script. The value of each part is initially set to
+its current value in database-->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <h1 class="page-header">Edit Product</h1>
  
