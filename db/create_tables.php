@@ -1,6 +1,7 @@
 <?php
 
-$create_query = "CREATE TABLE IF NOT EXISTS PRODUCT
+$create_products =
+"CREATE TABLE IF NOT EXISTS PRODUCT
 (
 number int AUTO_INCREMENT,
 name varchar(40) NOT NULL,
@@ -12,10 +13,10 @@ description varchar(255),
 category varchar(40),
 primary key(number)
 );
-
-
 ";
 
-mysql_query($create_query)
+
+
+mysql_query($create_products)
 or die(mysql_error());
 ?>
