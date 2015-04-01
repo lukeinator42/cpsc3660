@@ -8,6 +8,6 @@
 	mysql_select_db(DATABASE_NAME)
 	or die("<p>Error selecting database</p>");
 
-//	require_once('/db/create_tables.php');
+	require_once(ROOT.'/db/create_tables.php');
 
 ?>

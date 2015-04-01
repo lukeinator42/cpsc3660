@@ -1,7 +1,5 @@
 <?php
 
-require_once './connect.php';
-
 $create_query = "CREATE TABLE IF NOT EXISTS PRODUCT
 (
 number int AUTO_INCREMENT,
@@ -21,4 +19,3 @@ primary key(number)
 mysql_query($create_query)
 or die(mysql_error());
 ?>
-
