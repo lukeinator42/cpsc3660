@@ -15,9 +15,9 @@ $sql_insert_person = "insert into PEOPLE(Pname, StreetAddress, billingAddress, D
                                  )"; 
 
 $sql_insert_Customer = "insert into CUSTOMER(Cname, creditLimit) 
-                           values ((select Pname from PEOPLE where Pname = $_POST[inputName] ),
-                                 '$_POST[inputCredit]'
-                                 )"; 
+                           values ('$_POST[inputName]',
+                                 $_POST[inputCredit]
+                                 );"; 
 
 //if successful return to products page
 if(mysql_query($sql_insert_person) && mysql_query($sql_insert_Customer))// && mysql_query($sql_insert_Customer)) 
