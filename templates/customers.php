@@ -1,16 +1,14 @@
-
 <?php
 //database connection
 require_once(ROOT.'/db/connect.php'); 
-
 //query to get data for products
 $sql_query = 
-"SELECT * from CUSTOMER";
+"SELECT 
+Pname,streetAddress, billingAddress, DOB, phone, email, password, creditLimit
+ from PEOPLE p, CUSTOMER c
+where p.Pname = c.Cname";
 $result = mysql_query($sql_query);
-
 ?>
-
-
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <h1 class="page-header">Customers</h1>
 
@@ -20,7 +18,6 @@ $result = mysql_query($sql_query);
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>#</th>
           <th>Name</th>
           <th>street Address</th>
           <th>Billing Address</th>
@@ -45,20 +42,21 @@ $result = mysql_query($sql_query);
           //delete button links to delete script 
           while ($row = mysql_fetch_row($result)) {
             echo "<tr>
-                  <td>".str_pad($row[0], 6, "0", STR_PAD_LEFT)."</td>
+                  <td>{$row[0]}</td>
                   <td>{$row[1]}</td>
                   <td>{$row[2]}</td>
+                  <td>{$row[3]}</td>
                   <td>{$row[4]}</td>
                   <td>{$row[5]}</td>
                   <td>{$row[6]}</td>
                   <td>{$row[7]}</td>
-                  <td>{$row[8]}</td>
-                  <td>{$row[9]}</td>
+
+
          
-                  <td><a href=\"?action=edit_Customer&number={$row[0]}\" 
+                  <td><a href=\"?action=edit_customer&customer_name={$row[0]}\" 
                         class=\"btn btn-primary\" role=\"button\">Edit</a></td>
 
-                  <td><a href=\"scripts/php/delete_Customer.php?number={$row[0]}\" 
+                  <td><a href=\"scripts/php/delete_Customer.php?customer_name={$row[0]}\" 
                         class=\"btn btn-danger\" role=\"button\" 
                         onclick=\"return confirm('Delete Customer?')\">Delete</a></td>
                   </tr>";
@@ -85,7 +83,7 @@ $result = mysql_query($sql_query);
     </div>
 
     <div class="form-group">
-        <input type="text" class="form-control" id="inputDateOfBirth" name="inputDateOfBirth" placeholder="Date of Birth">
+        <input type="text" class="form-control" id="inputDateOfBirth" name="inputDateOfBirth" placeholder="DD/MM/YYYY">
     </div>
 
     <div class="form-group">
