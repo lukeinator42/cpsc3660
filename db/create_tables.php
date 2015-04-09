@@ -64,6 +64,25 @@ $create_Employee =
 mysql_query($create_Employee)
 or die(mysql_error());
 
+$create_PURCHASE_ORDERS =
+"CREATE TABLE IF NOT EXISTS PURCHASE_ORDERS
+(
+	orderNum int AUTO_INCREMENT,
+	EID varchar(40) NOT NULL,
+	productNum int NOT NULL,
+	numPurchased int NOT NULL,
+	pricePurchasedAt int NOT NULL,
+	datePurchased varchar(10) NOT NULL,
+	paymentDate varchar(10) NOT NULL,
+	taxAmount int NOT NULL,
+	primary key(orderNum),
+	foreign key (EID) references EMPLOYEE(name),
+	foreign key (productNum) references PRODUCT(number)
+);
+";
+mysql_query($create_PURCHASE_ORDERS)
+or die(mysql_error());
+
 ?>
 
 
