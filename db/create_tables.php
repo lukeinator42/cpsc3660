@@ -83,6 +83,39 @@ $create_PURCHASE_ORDERS =
 mysql_query($create_PURCHASE_ORDERS)
 or die(mysql_error());
 
+
+$create_invoice = 
+"CREATE TABLE IF NOT EXISTS INVOICE
+(
+ordernum int AUTO_INCREMENT,
+customerID varchar(40) NOT NULL,
+tax_amount int NOT NULL,
+date varchar(10) NOT NULL,
+primary key(ordernum),
+foreign key(customerID) references CUSTOMER(Cname)
+);";
+
+$create_invoice_products = 
+"CREATE TABLE IF NOT EXISTS INVOICE_PRODUCTS
+(
+ordernum int,
+productnum int,
+price_sold_at int,
+quantity_sold int,
+primary key(ordernum, productnum),
+foreign key(ordernum) references INVOICE(ordernum),
+foreign key(productnum) references PRODUCT(number)
+)
+";
+
+mysql_query($create_invoice)
+or die(mysql_error());
+
+
+mysql_query($create_invoice_products)
+or die(mysql_error());
+
+
 ?>
 
 
