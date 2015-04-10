@@ -76,7 +76,7 @@ $create_PURCHASE_ORDERS =
 	paymentDate varchar(10) NOT NULL,
 	taxAmount int NOT NULL,
 	primary key(orderNum),
-	foreign key (EID) references EMPLOYEE(name),
+	foreign key (EID) references EMPLOYEE(Ename),
 	foreign key (productNum) references PRODUCT(number)
 );
 ";
