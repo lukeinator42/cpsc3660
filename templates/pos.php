@@ -32,7 +32,8 @@ $('.typeahead').typeahead(null, {
 </script>
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-  <h1 class="page-header">Please Select a Customer</h1>
+  <h1 class="page-header">Point of Sale</h1>
+  <h2>Please Select a Customer</h2>
 
  <form class="form-inline" action="?action=create_invoice" method="post">
 
@@ -41,7 +42,7 @@ $('.typeahead').typeahead(null, {
     </div>
 
     <div class="form-group">
-    <button type="submit" class="btn btn-success">Find Customer</button>
+    <button type="submit" class="btn btn-success">Start Sale</button>
     </div>
 </form>
 
