@@ -49,14 +49,23 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
             <li><a href="?action=login">Login</a></li>
-            <li><a href="#">Help</a></li>
+
+      <li>
+      <a href="?action=pos">Point-of-Sale</a>
+      </li>
+
+      <li>
+      <a href="?action=products">Products</a>
+      </li>
+
+      <li>
+      <a href="?action=customers">Customers</a>
+      </li>
+
+
           </ul>
-          <form class="navbar-form navbar-right" action="db/connect.php" method="POST">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
+ 
         </div>
       </div>
     </nav>

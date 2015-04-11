@@ -3,7 +3,8 @@
 require_once(ROOT.'/db/connect.php'); 
 
 //query to get data for products
-$sql_query = "SELECT * from INVOICE";
+$sql_query = "SELECT * from INVOICE
+order by ordernum desc";
 $result = mysql_query($sql_query);
 
 ?>
@@ -36,7 +37,7 @@ $result = mysql_query($sql_query);
           while ($row = mysql_fetch_row($result)) {
             echo "
                   <tr>
-                  <td><a href=\"?view_invoice&id={$row[0]}\">"
+                  <td><a href=\"?action=view_one_invoice&id={$row[0]}\">"
                   .str_pad($row[0], 6, "0", STR_PAD_LEFT)."</a></td>
                   <td>{$row[1]}</td>
                   <td>{$row[2]}%</td>
