@@ -21,10 +21,30 @@ $result_invoice_products = mysql_query($query_invoice_products);
 
 ?>
 
+
 <!--form that submits to update product script. The value of each part is initially set to
 its current value in database-->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
   <h1 class="page-header">Point of Sale</h1>
+
+
+
+<!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                Edit Invoice Info
+              </button>
+
+              <a href="/scripts/php/delete_invoice.php?id=<?php echo $_GET[id]?>" onclick="return confirm('Cancel Order?')">
+              <button type="button" class="btn btn-danger">
+                Cancel Sale
+              </button></a>
+
+              <button type="button" class="btn btn-success">
+                Complete Sale
+              </button>
+
+ <div class="clearfix"><br /></div>
 
   <div class="table-responsive col-sm-6">
     <table class="table table-striped">
@@ -45,14 +65,6 @@ its current value in database-->
     </div>
 
 
-
-
-<div class="clearfix"></div>
-
-<!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                Edit Invoice Info
-              </button>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -105,7 +117,7 @@ its current value in database-->
     </div>
 
     <div class="form-group">
-        <input type="text" class="form-control" id="inputQuantity" name="inputQuantity" placeholder="Quantity">
+        <input type="text" class="form-control" value="1" id="inputQuantity" name="inputQuantity" placeholder="Quantity">
     </div>
 
     <button type="submit" class="btn btn-success">Add Product</button>
