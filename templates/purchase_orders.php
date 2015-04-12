@@ -28,6 +28,10 @@
   <form class="col-xs-5" action="scripts/php/insert_purchase_orders.php" method="post">
   
   <div class="form-group">
+		<input type="type" class="form-control" id="inputEmployeeID" name="inputEmployeeID" placeholder="Employee Number">
+		</div>
+  
+  <div class="form-group">
         <input type="text" class="form-control" id="inputProductNum" name="inputProductNumber" placeholder="Product Number">
     </div>
 
@@ -52,7 +56,7 @@
     </div>
 
 
-    <button type="submit" class="btn btn-success">Add Purchase Order</button>
+    <button type="submit" class="btn-success">Add Purchase Order</button>
 </form>
 
 </div>
