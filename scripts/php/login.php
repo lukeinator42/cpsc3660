@@ -16,13 +16,15 @@ $row = mysql_fetch_row($result);
 
 if ("$row[0]" == '')
 {
-	echo "incorrect username or password";
+
+
+	header("Location: http://".$_SERVER['HTTP_HOST']."?action=login&error='invalid login'");
 }
 else
 {
-	session_start();
+
 	$_SESSION["username"] = "$row[0]";
-	header("Location: http://".$_SERVER['HTTP_HOST']."?action=customers");
+	header("Location: http://".$_SERVER['HTTP_HOST']."?action=index");
 }
 
 

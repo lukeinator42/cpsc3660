@@ -7,7 +7,12 @@ include('./templates/helpers/sidebar.php');
 
 require_once './db/config.php';
 
-if (!empty($_GET['action'])) {  
+
+if(!isset($_SESSION["username"])&&!(isset($_GET["action"])&&$_GET["action"]=='login')) {
+
+	include("./templates/login.php");
+
+} else if (!empty($_GET['action'])) {  
     $action = $_GET['action'];  
     $action = basename($action);  
     
