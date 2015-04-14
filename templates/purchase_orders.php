@@ -1,6 +1,14 @@
+<?php
+//database connection
+require_once(ROOT.'/db/connect.php'); 
 
+//query to get data for products
+$sql_query = "SELECT * from PURCHASE_ORDERS";
+$result = mysql_query($sql_query);
 
-<!--Container for table amd form-->
+?>
+
+<!--Container for table and form-->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <h1 class="page-header">Purchase Orders</h1>
 
@@ -12,6 +20,7 @@
         <tr>
           <th>Order #</th>
           <th>Employee</th>
+		  <th>Quantity</th>
           <th>Product</th>
           <th>Price</th>
           <th>Purchase Date</th>
@@ -19,6 +28,36 @@
 		  <th>Tax</th>
         </tr>
       </thead>
+	  <tbody class="searchable">
+        <!--prints each row of table-->
+        <?php
+          if (!$result) {
+            echo "DB Error, could not list tables. ";
+            echo 'MySQL Error: ' . mysql_error();
+            exit;
+          }
+          //echos each row of table. 
+          //edit button links to edit form.
+          //delete button links to delete script 
+          while ($row = mysql_fetch_row($result)) {
+            echo "<tr>
+                  <td>{$row[1]}</td>
+                  <td>{$row[2]}</td>
+                  <td>{$row[3]}</td>
+                  <td>{$row[4]}</td>
+                  <td>{$row[5]}</td>
+                  <td>{$row[6]}</td>
+                  <td>{$row[7]}</td>
+                  <td><a href=\"?action=edit_purchase_orders&ordernum={$row[0]}\" 
+                        class=\"btn btn-primary\" role=\"button\">Edit</a></td>
+
+                  <td><a href=\"scripts/php/delete_purchase_orders.php?ordernum={$row[0]}\" 
+                        class=\"btn btn-danger\" role=\"button\" 
+                        onclick=\"return confirm('Delete Product?')\">Delete</a></td>
+                  </tr>";
+          }
+        ?>
+		</tbody>
     </table>
   </div>
   
@@ -32,7 +71,7 @@
 		</div>
   
   <div class="form-group">
-        <input type="text" class="form-control" id="inputProductNum" name="inputProductNumber" placeholder="Product Number">
+        <input type="text" class="form-control" id="inputProductNum" name="inputProductNum" placeholder="Product Number">
     </div>
 
     <div class="form-group">
@@ -56,7 +95,7 @@
     </div>
 
 
-    <button type="submit" class="btn-success">Add Purchase Order</button>
+    <button type="submit" class="btn btn-success">Add Purchase Order</button>
 </form>
 
 </div>
