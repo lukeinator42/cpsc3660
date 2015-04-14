@@ -49,8 +49,12 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="?action=login">Login</a></li>
-
+            
+          <?php
+            if(isset($_GET['action'])&&$_GET['action']!='login') {
+            echo "<li><a href=\"?action=logout\">Logout</a></li>";
+            }
+          ?>
       <li>
       <a href="?action=pos">Point-of-Sale</a>
       </li>
