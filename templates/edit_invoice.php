@@ -21,6 +21,38 @@ $result_invoice_products = mysql_query($query_invoice_products);
 
 ?>
 
+<script type="text/javascript">
+  $(document).ready(function() {
+ var product_id = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  limit: 10,
+
+    remote: {
+
+    url: '/scripts/php/upc_lookup.php?number=%QUERY',
+
+    filter: function(list) {
+      return $.map(list, function(prod_id) { return { name: prod_id }; });
+    }
+  }
+
+
+});
+ 
+
+product_id.initialize();
+ 
+$('.typeahead').typeahead(null, {
+  name: 'inputUPC',
+  displayKey: 'name',
+
+  source: product_id.ttAdapter()
+});
+})
+
+</script>
+
 
 <!--form that submits to update product script. The value of each part is initially set to
 its current value in database-->
@@ -40,9 +72,12 @@ its current value in database-->
                 Cancel Sale
               </button></a>
 
+              <a href="?action=view_one_invoice&amp;id=<?php echo $_GET[id]?>" >
               <button type="button" class="btn btn-success">
                 Complete Sale
-              </button>
+              </button></a>
+
+              
 
  <div class="clearfix"><br /></div>
 
@@ -113,7 +148,7 @@ its current value in database-->
      <input type="hidden" name="id" value="<?php echo $row[0]?>" />
 
     <div class="form-group">
-        <input type="text" class="form-control" id="inputUPC" name="inputUPC" placeholder="UPC/Product Name">
+        <input type="text" class="form-control typeahead" id="inputUPC" name="inputUPC" placeholder="UPC/Product Name">
     </div>
 
     <div class="form-group">
@@ -149,23 +184,44 @@ its current value in database-->
           //echos each row of table. 
           //edit button links to edit form.
           //delete button links to delete script 
-          while ($row = mysql_fetch_row($result_invoice_products)) {
+          $sum=0;
+          while ($invoice_row = mysql_fetch_row($result_invoice_products)) {
             echo "<tr>
-                  <td>".str_pad($row[0], 6, "0", STR_PAD_LEFT)."</td>
-                  <td>{$row[1]}</td>
-                  <td>{$row[2]}</td>
-                  <td>{$row[3]}</td>
-                  <td>{$row[4]}</td>
-                  <td>$".number_format((floatval($row[5])/100), 2)."</td>
-                  <td>{$row[6]}</td>
-                  <td><a href=\"?action=edit_invoice_product&number={$row[0]}&id=$_GET[id]\" 
+                  <td>".str_pad($invoice_row[0], 6, "0", STR_PAD_LEFT)."</td>
+                  <td>{$invoice_row[1]}</td>
+                  <td>{$invoice_row[2]}</td>
+                  <td>{$invoice_row[3]}</td>
+                  <td>{$invoice_row[4]}</td>
+                  <td>$".number_format((floatval($invoice_row[5])/100), 2)."</td>
+                  <td>{$invoice_row[6]}</td>
+                  <td><a href=\"?action=edit_invoice_product&number={$invoice_row[0]}&id=$_GET[id]\" 
                         class=\"btn btn-primary\" role=\"button\">Edit</a></td>
 
-                  <td><a href=\"scripts/php/delete_invoice_product.php?number={$row[0]}&id=$_GET[id]\" 
+                  <td><a href=\"scripts/php/delete_invoice_product.php?number={$invoice_row[0]}&id=$_GET[id]\" 
                         class=\"btn btn-danger\" role=\"button\" 
                         onclick=\"return confirm('Delete Product?')\">Delete</a></td>
                   </tr>";
+          $sum = $sum + (floatval($invoice_row[5])/100)*$invoice_row[6];
           }
+
+          $tax = number_format((floatval($row[2])/100)*$sum, 2);
+          
+          $grand = number_format(floatval($sum+$tax), 2);
+
+          echo '
+                  </tbody>
+                </table>
+                <hr>
+                <div class="clearfix"><br /></div>
+
+                <table class="table table-striped">
+                <tbody class="searchable col-sm-5" style="float: right;">
+                <tr><th>Grand Total</th></tr>
+                <tr><td>$'.$sum.'</td></tr>
+                <tr><th>Tax</th></tr>
+                <tr><td>$'.$tax.'</td></tr>
+                <tr><th>Grand Total + Tax</th></tr>
+                <tr><td>$'.$grand.'</td></tr>';
         ?>
       </tbody>
     </table>

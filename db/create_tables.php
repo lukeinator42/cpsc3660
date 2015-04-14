@@ -64,7 +64,7 @@ $create_Employee =
 mysql_query($create_Employee)
 or die(mysql_error());
 
-$create_PURCHASE_ORDERS =
+$create_Purchase_Orders =
 "CREATE TABLE IF NOT EXISTS PURCHASE_ORDERS
 (
 	orderNum int AUTO_INCREMENT,
@@ -80,7 +80,7 @@ $create_PURCHASE_ORDERS =
 	foreign key (productNum) references PRODUCT(number)
 );
 ";
-mysql_query($create_PURCHASE_ORDERS)
+mysql_query($create_Purchase_Orders)
 or die(mysql_error());
 
 
