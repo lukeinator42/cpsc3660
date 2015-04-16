@@ -53,7 +53,7 @@ its current value in database-->
 
     <div class="form-group">
         <label for="inputDateOfBirth">Date Of Birth</label>
-        <input type="text" class="form-control" id="inputDateOfBirth" name="inputDateOfBirth" placeholder="DD/MM/YYYY"
+        <input type="text" class="form-control" id="inputDateOfBirth" name="inputDateOfBirth" placeholder="DD/MM/YY"
         value="<?php echo $row[3]?>">
     </div>
 

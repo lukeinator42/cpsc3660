@@ -81,7 +81,7 @@ $result = mysql_query($sql_query);
     </div>
 
     <div class="form-group">
-        <input type="text" class="form-control" id="inputDateOfBirth" name="inputDateOfBirth" placeholder="DD/MM/YYYY">
+        <input type="text" class="form-control" id="inputDateOfBirth" name="inputDateOfBirth" placeholder="DD/MM/YY">
     </div>
 
     <div class="form-group">
