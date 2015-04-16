@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cpsc 3660</title>
+    <title>Sales Terminal</title>
 
    <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -45,7 +45,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="?action=index">Cpsc 3660</a>
+          <a class="navbar-brand" href="?action=index">Sales Terminal</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -67,6 +67,9 @@
       <a href="?action=customers">Customers</a>
       </li>
 
+      <li>
+      <a href="?action=purchase_orders">Purchase Orders</a>
+      </li>
 
           </ul>
  
