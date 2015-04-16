@@ -17,14 +17,14 @@ if(!isset($_SESSION["username"])&&!(isset($_GET["action"])&&$_GET["action"]=='lo
     $action = basename($action);  
     
     if (!file_exists("./templates/$action.php"))  
-        $action = "index";  
+        $action = "pos";  
     
     if ($action == 'header' || $action == 'footer' || $action == 'sidebar') 
-        $action = "index"; 
+        $action = "pos"; 
     
     include("./templates/$action.php");  
 } else {  
-    include("./templates/index.php");  
+    include("./templates/pos.php");  
 }  
 
 

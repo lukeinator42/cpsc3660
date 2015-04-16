@@ -72,7 +72,7 @@ its current value in database-->
                 Cancel Sale
               </button></a>
 
-              <a href="?action=view_one_invoice&amp;id=<?php echo $_GET[id]?>" >
+              <a href="?action=complete_invoice&amp;id=<?php echo $_GET[id]?>" >
               <button type="button" class="btn btn-success">
                 Complete Sale
               </button></a>

@@ -30,15 +30,14 @@ if(mysql_query($sql_insert))
 } else {
    $err = mysql_errno();
 
+      if($err == 1452)
+   {
+      $err = "product does not exist"; 
+   } 
+
   header("Location: http://".$_SERVER['HTTP_HOST'].
          "?action=error&error={$err}&return_url=%3Faction=edit_invoice%26id={$_POST[id]}");
 
-   if($err == 1062)
-   {
-      echo "<p>Product $_POST[inputName] already exists!</p>"; 
-   } else {
-      echo "<p> ".$row." MySQ $err </p> "; 
 
-   }
 }
 ?>

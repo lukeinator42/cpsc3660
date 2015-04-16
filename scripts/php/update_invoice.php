@@ -20,17 +20,13 @@ if(mysql_query($sql_update))
    $err = mysql_errno();
    $msg = mysql_error(); 
 
+   if($err == 1452)
+   {
+      $err = "customer does not exist";
+   }
+
    header("Location: http://".$_SERVER['HTTP_HOST'].
          "?action=error&error={$err}&return_url=%3Faction=edit_invoice%26id={$_POST[id]}");
-   if($err == 1062)
-   {
 
-
-      echo "<p>Product $_POST[inputName] already exists!</p>"; 
-   } else {
-      echo "<p>MySQL error code $err </p>"; 
-     echo $_POST['number'];
-
-   }
 }
 ?>

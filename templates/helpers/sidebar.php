@@ -3,9 +3,7 @@
   <div class="col-sm-3 col-md-2 sidebar">
     <ul class="nav nav-sidebar">
       
-      <li <?php if( !isset($_GET['action'])||$_GET['action']==='index' ) echo 'class="active"'?> >
-      <a href="?action=index">Overview</a>
-      </li>
+
 
       <li <?php if( isset($_GET['action'])&&
       ($_GET['action']==='pos'||

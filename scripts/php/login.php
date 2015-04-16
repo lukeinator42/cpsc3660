@@ -24,7 +24,7 @@ else
 {
 
 	$_SESSION["username"] = "$row[0]";
-	header("Location: http://".$_SERVER['HTTP_HOST']."?action=index");
+	header("Location: http://".$_SERVER['HTTP_HOST']."?action=pos");
 }
 
 

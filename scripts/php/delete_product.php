@@ -14,11 +14,15 @@ if(mysql_query($sql_delete))
 //else print error
 } else {
    $err = mysql_errno(); 
-   if($err == 1062)
+   if($err == 1451)
    {
-      echo "<p>Product $_GET[number] cannot be deleted!</p>"; 
+     
+   	  header("Location: http://".$_SERVER['HTTP_HOST'].
+         "?action=error&error=Product exists in invoice. Cannot delete.&return_url=%3Faction=products");
+ 
    } else {
-      echo "<p>MySQL error code $err </p>"; 
+     	  header("Location: http://".$_SERVER['HTTP_HOST'].
+         "?action=error&error={$err}&return_url=%3Faction=products");
 
    }
 }
