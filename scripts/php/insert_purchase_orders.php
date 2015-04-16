@@ -3,14 +3,13 @@ require_once('../../db/config.php');
 require_once('../../db/connect.php'); 
 
 //insert query. pulls parameters from form data via POST
-$sql_insert = "insert into PURCHASE_ORDERS(EID, productNum, numPurchased, pricePurchasedAt, datePurchased, paymentDate, taxAmount) 
+$sql_insert = "insert into PURCHASE_ORDERS(EID, orderNumb, numPurchased, pricePurchasedAt, datePurchased, paymentDate) 
 									values ('$_POST[inputEmployeeID]',
-											'$_POST[inputProductNum]',
+											'$_POST[inputOrderNumb]',
 											'$_POST[inputNumPurchased]',
 											'".str_replace(".", "", $_POST['inputPricePurchasedAt'])."',
 											'$_POST[inputDatePurchased]',
 											'$_POST[inputPaymentDate]',
-											'".str_replace(".", "", $_POST['inputTaxAmount'])."',
 										)"; 
 //if successful return to products page
 if(mysql_query($sql_insert)) 

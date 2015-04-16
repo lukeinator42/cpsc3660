@@ -69,15 +69,14 @@ $create_Purchase_Orders =
 (
 	orderNum int AUTO_INCREMENT,
 	EID varchar(40) NOT NULL,
-	productNum int NOT NULL,
+	orderNumb int NOT NULL,
 	numPurchased int NOT NULL,
 	pricePurchasedAt int NOT NULL,
 	datePurchased varchar(10) NOT NULL,
 	paymentDate varchar(10) NOT NULL,
-	taxAmount int NOT NULL,
 	primary key(orderNum),
 	foreign key (EID) references EMPLOYEE(Ename),
-	foreign key (productNum) references PRODUCT(number)
+	foreign key (orderNumb) references INVOICE(ordernum)
 );
 ";
 mysql_query($create_Purchase_Orders)

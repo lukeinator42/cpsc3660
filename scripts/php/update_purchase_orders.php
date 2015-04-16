@@ -5,11 +5,10 @@ require_once('../../db/connect.php');
 //update query. 
 $sql_update_purchase_orders = "UPDATE PURCHASE_ORDERS SET
                  EID='".$_POST['inputemployeeID']."',
-   					ProductNum='".$_POST['inputproductNumber']."',
+   					OrderNum='".$_POST['inputproductNumber']."',
    					numPurchates='".$_POST['inputnumPurchased']."',
    					datePurchased='".$_POST['inputpurchaseDate']."',
    					paymentDate='".$_POST['inputpaymaneDate']."',
-   					taxAmount='".$_POST['inputtaxAmount']."'
                   "; 
 
 //if successful return to products page. 
