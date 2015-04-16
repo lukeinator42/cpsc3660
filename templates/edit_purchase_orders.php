@@ -3,7 +3,7 @@
 require_once(ROOT.'/db/connect.php'); 
 
 //query to populate form for editing
-$sql_query = "SELECT * from PURCHASE_ORDERS WHERE number=$_GET[number]";
+$sql_query = "SELECT * from PURCHASE_ORDERS WHERE EID=$_GET[id]";
 $result = mysql_query($sql_query);
 
 if (!$result) {
@@ -14,56 +14,189 @@ exit;
 //get data for form
 $row = mysql_fetch_row($result);
 
+//query to get data for products
+$query_invoice_products = "SELECT orderNum, EID, OrderNumb, numPurchased, pricePurchasedAt, datePurchased, paymentDate, taxAmount
+from PURCHASE_ORDERS where EID=$_GET[id]";
+$result_invoice_products = mysql_query($query_invoice_products);
+
 ?>
 
-<!--form that submits to update purchase_orders script. The value of each part is initially set to
+
+
+
+<!--form that submits to update product script. The value of each part is initially set to
 its current value in database-->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-  <h1 class="page-header">Edit Purchase Orders</h1>
- 
-  <form class="col-xs-5" action="scripts/php/update_purchase_orders.php" method="post">
 
-    <input type="hidden" name="number" value="<?php echo $row[0]?>" />
+  <h1 class="page-header">Purchase Orders</h1>
 
-    <div class="form-group">
-        <label for="inputEmployeeID">Employee ID</label>
-        <input type="text" class="form-control" id="inputEmployeeID" name="inputEmployeeID" placeholder="Name" 
-         value="<?php echo $row[1]?>">
+
+
+<!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                Edit Order Info
+              </button>
+
+              <a href="/scripts/php/delete_purchase_orders.php?id=<?php echo $_GET[id]?>" onclick="return confirm('Cancel Order?')">
+              <button type="button" class="btn btn-danger">
+                Cancel Purchase
+              </button></a>
+
+              <a href="?action=view_one_purchase_order&amp;id=<?php echo $_GET[id]?>" >
+              <button type="button" class="btn btn-success">
+                Complete Sale
+              </button></a>
+
+              
+
+ <div class="clearfix"><br /></div>
+
+  <div class="table-responsive col-sm-6">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Purchase Order Info</th>
+        </tr>
+      </thead>
+      <tbody class="searchable">
+        <!--prints each row of table-->
+        <tr><td>Id: <?php echo $row[0]; ?> </td></tr>
+        <tr><td>Name: <?php echo $row[1]; ?> </td></tr>
+        <tr><td>Tax Amount: <?php echo $row[2]; ?>%</td></tr>
+        <tr><td>Date: <?php echo $row[3]; ?> </td>
+        </tr>
+      </tbody>
+    </table>
     </div>
 
-    <div class="form-group">
-        <label for="inputOrderNumb">Order Number</label>
-        <input type="text" class="form-control" id="inputOrderNumb" name="inputOrderNumb" placeholder="OrderNum"
-        value="<?php echo $row[2]?>">
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Update Purchase Order Info</h4>
+      </div>
+      <div class="modal-footer" style="text-align: left;">
+          <form class="col-xs-5" action="scripts/php/update_purchase_orders.php" method="post">
+
+            <input type="hidden" name="id" value="<?php echo $row[0]?>" />
+
+            <div class="form-group">
+                <label for="inputName">Employee Name</label>
+                <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name" 
+                 value="<?php echo $row[1]?>">
+            </div>
+
+            <div class="form-group">
+                <label for="inputUPC">Tax</label>
+                <input type="text" class="form-control" id="inputTax" name="inputTax" placeholder="Tax"
+                value="<?php echo $row[2]?>">
+            </div>
+
+            <div class="form-group">
+                <label for="inputDate">Date</label>
+                <input type="text" class="form-control" id="inputDate" name="inputDate" placeholder="Date"
+                value="<?php echo $row[3]?>">
+            </div>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success">Update Invoice</button>
+        </form>
+      </div>
     </div>
-
-    <div class="form-group">
-        <label for="inputNumPurchased">Quantity</label>
-        <input type="text" class="form-control" id="inputNumPurchased" name="inputNumPurchased" placeholder="Quantity"
-        value="<?php echo $row[3]?>">
-    </div>
-
-    <div class="form-group">
-        <label for="inputPricePurchasedAt">Price</label>
-        <input type="text" class="form-control" id="inputPricePurchasedAt" name="inputPricePurchasedAt" placeholder="Price"
-        value="<?php echo number_format((floatval($row[4])/100), 2) ?>">
-    </div>
-
-    <div class="form-group">
-        <label for="inputDatePurchased">Date</label>
-        <input type="text" class="form-control" id="inputDatePurchased" name="inputDatePurchased" placeholder="Date"
-        value="<?php echo $row[5]?>">
-    </div>
-
-    <div class="form-group">
-        <label for="inputPaymentDate">Payment Date</label>
-        <input type="text" class="form-control" id="inputPaymentDate" name="inputPaymentDate" placeholder="Description" 
-		value="<?php echo $row[6]?>">
-    </div>
-
-    <a href="?action=purchase_orders" class="btn btn-primary" role="button">Go Back</a>
-    <button type="submit" class="btn btn-success">Update Purchase Orders</button>
-</form>
-
+  </div>
 </div>
 
+
+<div class="clearfix"><br /><br /></div>
+
+
+    <form class="form-inline" action="scripts/php/insert_purchase_orders.php" method="post">
+
+     <input type="hidden" name="id" value="<?php echo $row[0]?>" />
+
+    <div class="form-group">
+        <input type="text" class="form-control typeahead" id="inputUPC" name="inputUPC" placeholder="UPC/Product Name">
+    </div>
+
+    <div class="form-group">
+        <input type="text" class="form-control" value="1" id="inputQuantity" name="inputQuantity" placeholder="Quantity">
+    </div>
+
+    <button type="submit" class="btn btn-success">Add Product</button>
+    </form>
+
+<div class="clearfix"><br /></div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Product #</th>
+          <th>Name</th>
+          <th>UPC</th>
+          <th>Unit</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody class="searchable">
+        <!--prints each row of table-->
+        <?php
+          if (!$result) {
+            echo "DB Error, could not list tables. ";
+            echo 'MySQL Error: ' . mysql_error();
+            exit;
+          }
+          //echos each row of table. 
+          //edit button links to edit form.
+          //delete button links to delete script 
+          $sum=0;
+          while ($invoice_row = mysql_fetch_row($result_invoice_products)) {
+            echo "<tr>
+                  <td>".str_pad($invoice_row[0], 6, "0", STR_PAD_LEFT)."</td>
+                  <td>{$invoice_row[1]}</td>
+                  <td>{$invoice_row[2]}</td>
+                  <td>{$invoice_row[3]}</td>
+                  <td>{$invoice_row[4]}</td>
+                  <td>$".number_format((floatval($invoice_row[5])/100), 2)."</td>
+                  <td>{$invoice_row[6]}</td>
+                  <td><a href=\"?action=edit_purchase_orders&orderNum={$invoice_row[0]}&id=$_GET[id]\" 
+                        class=\"btn btn-primary\" role=\"button\">Edit</a></td>
+
+                  <td><a href=\"scripts/php/delete_invoice_product.php?number={$invoice_row[0]}&id=$_GET[id]\" 
+                        class=\"btn btn-danger\" role=\"button\" 
+                        onclick=\"return confirm('Delete Product?')\">Delete</a></td>
+                  </tr>";
+          $sum = $sum + (floatval($invoice_row[5])/100)*$invoice_row[6];
+          }
+
+          $tax = number_format((floatval($row[2])/100)*$sum, 2);
+          
+          $grand = number_format(floatval($sum+$tax), 2);
+
+          echo '
+                  </tbody>
+                </table>
+                <hr>
+                <div class="clearfix"><br /></div>
+
+                <table class="table table-striped">
+                <tbody class="searchable col-sm-5" style="float: right;">
+                <tr><th>Grand Total</th></tr>
+                <tr><td>$'.$sum.'</td></tr>
+                <tr><th>Tax</th></tr>
+                <tr><td>$'.$tax.'</td></tr>
+                <tr><th>Grand Total + Tax</th></tr>
+                <tr><td>$'.$grand.'</td></tr>';
+        ?>
+      </tbody>
+    </table>
+  </div>
+
+
+
+</div>
