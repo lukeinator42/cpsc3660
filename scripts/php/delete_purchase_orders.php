@@ -5,7 +5,7 @@ require_once('../../db/connect.php');
 
 //delete query
 $name = $_GET[purchase_orders_name];
-$sql_delete_purchase_orders = "delete from PURCHASE_ORDERS where Cname = '$name'";
+$sql_delete_purchase_orders = "delete from PURCHASE_ORDERS where Ename = '$name'";
 
 //if successful return to purchase_orders page
 if(mysql_query($sql_delete_purchase_orders)) 

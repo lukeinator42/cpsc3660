@@ -9,6 +9,7 @@ $sql_update_purchase_orders = "UPDATE PURCHASE_ORDERS SET
    					numPurchates='".$_POST['inputnumPurchased']."',
    					datePurchased='".$_POST['inputpurchaseDate']."',
    					paymentDate='".$_POST['inputpaymaneDate']."',
+   					taxAmount='".$_POST['inputtaxAmount']."'
                   "; 
 
 //if successful return to products page. 
