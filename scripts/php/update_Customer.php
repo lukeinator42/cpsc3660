@@ -20,7 +20,7 @@ $sql_update_people = "UPDATE PEOPLE SET
                   "; 
 
 
-//if successful return to products page. 
+//if successful return to Customers page. 
 if(mysql_query($sql_update_people) && mysql_query($sql_update_customer)) 
 { 
       header("Location: http://".$_SERVER['HTTP_HOST']."?action=customers");
@@ -32,7 +32,7 @@ if(mysql_query($sql_update_people) && mysql_query($sql_update_customer))
    $msg = mysql_error(); 
    if($err == 1062)
    {
-      echo "<p>Product $_POST[inputName] already exists!</p>"; 
+      echo "<p>Customer $_POST[inputName] already exists!</p>"; 
    } else {
       echo "<p>MySQL error code $err </p>"; 
      echo $_POST['number'];

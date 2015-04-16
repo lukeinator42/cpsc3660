@@ -1,7 +1,8 @@
 a<?php
 //database connection
 require_once(ROOT.'/db/connect.php'); 
-//query to get data for products
+//query to get data for Employees
+
 $sql_query = 
 "SELECT 
 Pname,streetAddress, billingAddress, DOB, phone, email, password, authority, sales
@@ -25,7 +26,6 @@ $result = mysql_query($sql_query);
           <th>Date of Birth</th>
           <th>Phone #</th>
           <th>Email</th>
-          <th>Password</th>
           <th>Authority Level</th>
           <th>sales</th>
         </tr>
@@ -50,7 +50,6 @@ $result = mysql_query($sql_query);
                   <td>{$row[3]}</td>
                   <td>{$row[4]}</td>
                   <td>{$row[5]}</td>
-                  <td>{$row[6]}</td>
                   <td>{$row[7]}</td>
                   <td>{$row[8]}</td>
 
@@ -61,7 +60,7 @@ $result = mysql_query($sql_query);
 
                   <td><a href=\"scripts/php/delete_employee.php?employee_name={$row[0]}\" 
                         class=\"btn btn-danger\" role=\"button\" 
-                        onclick=\"return confirm('Delete Customer?')\">Delete</a></td>
+                        onclick=\"return confirm('Delete Employee?')\">Delete</a></td>
                   </tr>";
           }
         ?>
@@ -109,7 +108,7 @@ $result = mysql_query($sql_query);
         <input type="text" class="form-control" id="inputsales" name="inputsales" placeholder="sales">
     </div>
 
-    <button type="submit" class="btn btn-success">Add Customer</button>
+    <button type="submit" class="btn btn-success">Add Employee</button>
 </form>
 </div>
 

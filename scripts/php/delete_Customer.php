@@ -19,7 +19,7 @@ else
    $err = mysql_errno(); 
    if($err == 1062)
    {
-      echo "<p>Product $_GET[number] cannot be deleted!</p>"; 
+      echo "<p>Customer $_GET[number] cannot be deleted!</p>"; 
    } else {
       echo "<p>MySQL error code $err </p>"; 
 

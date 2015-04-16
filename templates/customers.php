@@ -1,7 +1,7 @@
 <?php
 //database connection
 require_once(ROOT.'/db/connect.php'); 
-//query to get data for products
+//query to get data for Customers
 $sql_query = 
 "SELECT 
 Pname,streetAddress, billingAddress, DOB, phone, email, password, creditLimit
@@ -24,7 +24,6 @@ $result = mysql_query($sql_query);
           <th>Date of Birth</th>
           <th>Phone #</th>
           <th>Email</th>
-          <th>Password</th>
           <th> credit limit</th>
         </tr>
       </thead>
@@ -48,7 +47,6 @@ $result = mysql_query($sql_query);
                   <td>{$row[3]}</td>
                   <td>{$row[4]}</td>
                   <td>{$row[5]}</td>
-                  <td>{$row[6]}</td>
                   <td>{$row[7]}</td>
 
 

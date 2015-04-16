@@ -20,7 +20,7 @@ $sql_insert_Employee = "insert into EMPLOYEE(Ename, authority, sales)
                                  $_POST[inputsales]
                                  );"; 
 
-//if successful return to products page
+//if successful return to Employees page
 if(mysql_query($sql_insert_person) && mysql_query($sql_insert_Employee)) 
 { 
 

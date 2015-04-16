@@ -24,10 +24,10 @@ $row = mysql_fetch_row($result);
 
 ?>
 
-<!--form that submits to update product script. The value of each part is initially set to
+<!--form that submits to update Employee script. The value of each part is initially set to
 its current value in database-->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-  <h1 class="page-header">Edit Customer Info</h1>
+  <h1 class="page-header">Edit Employee Info</h1>
  
   <form class="col-xs-5" action="scripts/php/update_employee.php" method="post">
 

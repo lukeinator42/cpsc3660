@@ -9,7 +9,7 @@ $sql_insert_person = "insert into PEOPLE(Pname, StreetAddress, billingAddress, D
 											'$_POST[inputStreetAdress]',
 											'$_POST[inputBillingAddress]',
 											'$_POST[inputDateOfBirth]',
-											'$_POST[inputphone]',
+											$_POST[inputphone],
 											'$_POST[inputEmail]',
 											'$_POST[inputpassword]'
                                  )"; 
@@ -19,7 +19,7 @@ $sql_insert_Customer = "insert into CUSTOMER(Cname, creditLimit)
                                  $_POST[inputCredit]
                                  );"; 
 
-//if successful return to products page
+//if successful return to Customers page
 if(mysql_query($sql_insert_person) && mysql_query($sql_insert_Customer))// && mysql_query($sql_insert_Customer)) 
 { 
 

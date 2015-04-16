@@ -24,7 +24,7 @@ $row = mysql_fetch_row($result);
 
 ?>
 
-<!--form that submits to update product script. The value of each part is initially set to
+<!--form that submits to update Customer script. The value of each part is initially set to
 its current value in database-->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <h1 class="page-header">Edit Customer Info</h1>
@@ -85,7 +85,7 @@ its current value in database-->
 
     </div>
     <a href="?action=customers" class="btn btn-primary" role="button">Go Back</a>
-    <button type="submit" class="btn btn-success">Update Product</button>
+    <button type="submit" class="btn btn-success">Update Customer</button>
 </form>
 
 </div>
