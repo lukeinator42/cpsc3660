@@ -15,7 +15,7 @@ $result = mysql_query($sql_query);
   <h1 class="page-header">Employee</h1>
 
 
-  <h2 class="sub-header">Section title</h2>
+
   <div class="table-responsive">
     <table class="table table-striped">
       <thead>
