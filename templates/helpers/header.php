@@ -68,7 +68,7 @@
       </li>
 
       <li>
-      <a href="?action=purchase_orders">Purchase Orders</a>
+      <a href="?action=view_purchase_orders">Purchase Orders</a>
       </li>
 
           </ul>
