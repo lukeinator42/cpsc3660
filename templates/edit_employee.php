@@ -3,13 +3,13 @@
 require_once(ROOT.'/db/connect.php'); 
 
 //query to populate form for editing
-$name = $_GET[employee_name];
+$name = $_GET['employee_name'];
 
 $sql_query = 
 "SELECT 
 Pname,streetAddress, billingAddress, DOB, phone, email, password, authority, sales
  from PEOPLE p, EMPLOYEE e
-where p.Pname = '$name'";
+where p.Pname = '{$name}'";
 
 
 $result = mysql_query($sql_query);
@@ -77,13 +77,13 @@ its current value in database-->
                                                                     value="<?php echo $row[6]?>">
 
     <div class="form-group">
-        <label for="inputCredit">authority level</label>
+        <label for="inputAuthorityLvl">authority level</label>
         <input type="text" class="form-control" id="inputAuthorityLvl" name="inputAuthorityLvl" 
                                                                     placeholder="1 - 10"
                                                                     value="<?php echo $row[7]?>">
 
     <div class="form-group">
-        <label for="inputCredit">sales</label>
+        <label for="inputsales">sales</label>
         <input type="text" class="form-control" id="inputsales" name="inputsales" 
                                                                     placeholder="sales"
                                                                     value="<?php echo $row[8]?>">

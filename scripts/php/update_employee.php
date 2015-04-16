@@ -4,9 +4,9 @@ require_once('../../db/connect.php');
 
 //update query. 
 $sql_update_employee = "UPDATE EMPLOYEE SET
-                  authority='".$_POST['inputAuthorityLvl']."'
+                  authority='".$_POST['inputAuthorityLvl']."',
                   sales='".$_POST['inputsales']."'
-                  WHERE Cname='".$_POST['inputName']."'
+                  WHERE Ename='".$_POST['inputName']."'
                   "; 
 
 $sql_update_people = "UPDATE PEOPLE SET

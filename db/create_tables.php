@@ -27,7 +27,7 @@ Pname varchar(40) NOT NULL,
 StreetAddress varchar(50),
 billingAddress varchar(50),
 DOB char(8),
-phone int(11),
+phone int(12),
 email varchar(50),
 password varchar(20),
 primary key(Pname)
