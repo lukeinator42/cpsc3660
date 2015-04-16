@@ -13,15 +13,15 @@ if($result) {
 
 	if(!$name) {
 		header("Location: http://".$_SERVER['HTTP_HOST'].
-			"?action=error&error=name%20does%20not%20exist&return_url=%3Faction=purchase_orders");
+			"?action=error&error=name%20does%20not%20exist&return_url=%3Faction=pos");
 	} else {
 		$today = getdate();
 
 		$date = $today[mday]."/".$today[mon]."/".$today[year];
 
 
-		$sql_insert = "INSERT into PURCHASE_ORDERS(taxAmount, datePurchased)
-				values(
+		$sql_insert = "INSERT into PURCHASE_ORDER(employeeID, tax_amount, date)
+				values('$name',
 						5,
 						'$date')";
 

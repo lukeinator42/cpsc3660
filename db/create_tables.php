@@ -64,25 +64,6 @@ $create_Employee =
 mysql_query($create_Employee)
 or die(mysql_error());
 
-$create_Purchase_Orders =
-"CREATE TABLE IF NOT EXISTS PURCHASE_ORDERS
-(
-	orderNum int AUTO_INCREMENT,
-	EID varchar(40) NOT NULL,
-	orderNumb int NOT NULL,
-	numPurchased int NOT NULL,
-	pricePurchasedAt int NOT NULL,
-	datePurchased varchar(10) NOT NULL,
-	paymentDate varchar(10) NOT NULL,
-	taxAmount int NOT NULL,
-	primary key(orderNum),
-	foreign key (EID) references EMPLOYEE(Ename),
-	foreign key (orderNumb) references INVOICE(ordernum)
-);
-";
-mysql_query($create_Purchase_Orders)
-or die(mysql_error());
-
 
 $create_invoice = 
 "CREATE TABLE IF NOT EXISTS INVOICE
@@ -116,6 +97,36 @@ mysql_query($create_invoice_products)
 or die(mysql_error());
 
 
+$create_po = 
+"CREATE TABLE IF NOT EXISTS PURCHASE_ORDER
+(
+ordernum int AUTO_INCREMENT,
+employeeID varchar(40) NOT NULL,
+tax_amount int NOT NULL,
+date varchar(10) NOT NULL,
+primary key(ordernum),
+foreign key(employeeID) references EMPLOYEE(Ename)
+);";
+
+$create_po_products = 
+"CREATE TABLE IF NOT EXISTS PO_PRODUCTS
+(
+ordernum int,
+productnum int,
+price_sold_at int,
+quantity_sold int,
+primary key(ordernum, productnum),
+foreign key(ordernum) references PURCHASE_ORDER(ordernum),
+foreign key(productnum) references PRODUCT(number)
+)
+";
+
+mysql_query($create_po)
+or die(mysql_error());
+
+
+mysql_query($create_po_products)
+or die(mysql_error());
 ?>
 
 

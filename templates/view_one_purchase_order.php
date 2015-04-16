@@ -2,15 +2,15 @@
 //database connection
 require_once(ROOT.'/db/connect.php'); 
 
-//query to get data for purchase orders
-$sql_query = "SELECT orderNum, EID, numPurchased, pricePurchasedAt, datePurchased, paymentDate, taxAmount
-from PURCHASE_ORDERS
-where EID=$_GET[id]";
+//query to get data for products
+$sql_query = "SELECT ordernum, name, price_sold_at, quantity_sold 
+from PO_PRODUCTS, PRODUCT
+where ordernum=$_GET[id] and productnum=number";
 $result = mysql_query($sql_query);
 
 
 //query to populate form for editing
-$sql_query_invoice = "SELECT * from PURCHASE_ORDERS WHERE EID=$_GET[id]";
+$sql_query_invoice = "SELECT * from PURCHASE_ORDER WHERE ordernum=$_GET[id]";
 $invoice_result = mysql_query($sql_query_invoice);
 
 if (!$invoice_result) {
@@ -27,9 +27,9 @@ $invoice_row = mysql_fetch_row($invoice_result);
 <!--Container for table and form-->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-  <h1 class="page-header">Invoice #<?php echo $_GET[id]?></h1>
+  <h1 class="page-header">Purchase Order #<?php echo $_GET[id]?></h1>
 
-<a href="?action=invoices" class="btn btn-primary" role="button">Go Back</a>
+<a href="?action=view_purchase_orders" class="btn btn-primary" role="button">Go Back</a>
 
     <div class="clearfix"><br /></div>
 

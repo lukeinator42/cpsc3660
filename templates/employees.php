@@ -70,7 +70,7 @@ $result = mysql_query($sql_query);
   </div>
     <h2 class="sub-header">Add a Employee</h2>
   
-  <form class="col-xs-5" action="scripts/php/insert_Employee.php" method="post">
+  <form class="col-xs-5" action="scripts/php/insert_employee.php" method="post">
 
     <div class="form-group">
         <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name">

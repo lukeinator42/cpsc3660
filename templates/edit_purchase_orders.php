@@ -3,7 +3,7 @@
 require_once(ROOT.'/db/connect.php'); 
 
 //query to populate form for editing
-$sql_query = "SELECT * from PURCHASE_ORDERS WHERE EID=$_GET[id]";
+$sql_query = "SELECT * from PURCHASE_ORDER WHERE ordernum=$_GET[id]";
 $result = mysql_query($sql_query);
 
 if (!$result) {
@@ -15,8 +15,8 @@ exit;
 $row = mysql_fetch_row($result);
 
 //query to get data for products
-$query_invoice_products = "SELECT orderNum, EID, OrderNumb, numPurchased, pricePurchasedAt, datePurchased, paymentDate, taxAmount
-from PURCHASE_ORDERS where EID=$_GET[id]";
+$query_invoice_products = "SELECT number, name, UPC, measurement, description, price_sold_at, quantity_sold 
+from PO_PRODUCTS, PRODUCT where number=productnum and ordernum=$_GET[id]";
 $result_invoice_products = mysql_query($query_invoice_products);
 
 ?>
@@ -164,10 +164,10 @@ its current value in database-->
                   <td>{$invoice_row[4]}</td>
                   <td>$".number_format((floatval($invoice_row[5])/100), 2)."</td>
                   <td>{$invoice_row[6]}</td>
-                  <td><a href=\"?action=edit_purchase_orders&orderNum={$invoice_row[0]}&id=$_GET[id]\" 
+                  <td><a href=\"?action=edit_po_product&number={$invoice_row[0]}&id=$_GET[id]\" 
                         class=\"btn btn-primary\" role=\"button\">Edit</a></td>
 
-                  <td><a href=\"scripts/php/delete_invoice_product.php?number={$invoice_row[0]}&id=$_GET[id]\" 
+                  <td><a href=\"scripts/php/delete_po_product.php?number={$invoice_row[0]}&id=$_GET[id]\" 
                         class=\"btn btn-danger\" role=\"button\" 
                         onclick=\"return confirm('Delete Product?')\">Delete</a></td>
                   </tr>";
